@@ -70,6 +70,18 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด เข้าใจเปล่าเนี่ย!";
   
+}else if($arrJson['events'][0]['message']['text'] == "ทำไรอยู่"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "เรื่องของกู!";
+  
+}else if($arrJson['events'][0]['message']['text'] == "ไปไหนมา"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "โตแล้วจะไปไหนก็ได้";
+  
 }else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
