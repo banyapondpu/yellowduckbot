@@ -89,6 +89,24 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "กินตีนกูมั้ย? วันวันตังค์ไม่หาหาแต่เรื่อง";
 
+}else if($arrJson['events'][0]['message']['text'] == "หวยออกไร"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ตองสาม เชื่ออาตมา";
+
+}else if($arrJson['events'][0]['message']['text'] == "งวดนี้ออกไร"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ขยันทำงานแบบนี้ไหม";
+
+}else if($arrJson['events'][0]['message']['text'] == "ขอหวย"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ดกูเป็นเป็ด";
+
 }else if($arrJson['events'][0]['message']['text'] == "รักนะ"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
