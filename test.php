@@ -11,46 +11,25 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
+$objConnect = mysql_connect("localhost","arkatrich_users","1w2q3r4e") or die("Error Connect to Database");
+$objDB = mysql_select_db("arkatrich_db");
+echo $strSQL = "SELECT question,answer FROM duck_line WHERE question LIKE '%". $arrJson['events'][0]['message']['text'] ."%'";
+$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
+while($objResult = mysql_fetch_array($objQuery))
+{
+  
+}
+
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "เฮ้ย! ว่าไงนายชื่อ ".$arrJson['events'][0]['source']['userId']." ใช่ม้าาา";
-}else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "อ่านไม่ออกเหรอว่าชื่อ เป็ดเหลือง";
-}else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
-}else if($arrJson['events'][0]['message']['text'] == "ควยไร"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ของพี่คงไม่ใหญ่สินะ ถึงย้ำจำ";
-}else if($arrJson['events'][0]['message']['text'] == "หาแฟนให้หน่อย"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด สัด!";
-}else if($arrJson['events'][0]['message']['text'] == "อกหัก"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "อย่าเครียด เพื่อนกูตายทุกตรุษจีนกูยังสตรองค์";
-}else if($arrJson['events'][0]['message']['text'] == "ขอเงินหน่อย"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด เข้าใจเปล่าเนี่ย!";
 }else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ยังน้อยอยู่";
+  $arrPostData['messages'][0]['text'] = "ก๊าบบ (สอนเป็ดที)";
 }
 
 
