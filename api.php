@@ -15,30 +15,55 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "เฮ้ย! ว่าไงนายชื่อ ".$arrJson['events'][0]['source']['userId']." ใช่ม้าาา";
+  $arrPostData['messages'][0]['text'] = "สวัสดีก๊าบบ";
+  
 }else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "อ่านไม่ออกเหรอว่าชื่อ เป็ดเหลือง";
 
-}else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "กวน"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ"
+  $arrPostData['messages'][0]['text'] = "กวนไรเอาดีๆ"
   ;
-}else if($arrJson['events'][0]['message']['text'] == "ควยไร"){
+}else if($arrJson['events'][0]['message']['text'] == "ควย"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ของพี่คงไม่ใหญ่สินะ ถึงย้ำจำ";
+  $arrPostData['messages'][0]['text'] = "ใหญกว่าของน้องละกัน";
 
 }else if($arrJson['events'][0]['message']['text'] == "หาแฟนให้หน่อย"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด สัด!";
+
+}}else if($arrJson['events'][0]['message']['text'] == "เค"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "เค เรื่องอะไร";
+
+}}else if($arrJson['events'][0]['message']['text'] == "กินอะไร"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "อะไรก็ได้ที่ไม่ใช่เตี๋ยวเป็ด";
+
+}}else if($arrJson['events'][0]['message']['text'] == "ข้าวหน้าเป็ด"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "กวนตีน";
+
+}}else if($arrJson['events'][0]['message']['text'] == "กินไรดี"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "กินๆไปเถอะ จะมาถามทำไม";
 
 }else if($arrJson['events'][0]['message']['text'] == "อกหัก"){
   $arrPostData = array();
@@ -58,29 +83,53 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "กินตีนกูมั้ย? วันวันตังค์ไม่หาหาแต่เรื่อง";
 
-}else if($arrJson['events'][0]['message']['text'] == "ขอเงินหน่อย"){
+}else if($arrJson['events'][0]['message']['text'] == "รักนะ"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด เข้าใจเปล่าเนี่ย!";
+  $arrPostData['messages'][0]['text'] = "อร๊างงงห์";
 
-}else if($arrJson['events'][0]['message']['text'] == "ขอเงินหน่อย"){
+}else if($arrJson['events'][0]['message']['text'] == "บาย"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด เข้าใจเปล่าเนี่ย!";
+  $arrPostData['messages'][0]['text'] = "บุย";
+  
+}else if($arrJson['events'][0]['message']['text'] == "มีแฟนยัง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "กูเป็นเป็ด เป็น BOT ด้วยอย่าเสีเวลาถามอะไรไร้สาระ!";
   
 }else if($arrJson['events'][0]['message']['text'] == "ทำไรอยู่"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "เรื่องของกู!";
+  $arrPostData['messages'][0]['text'] = "โตแล้วจะทำไรก็ได้";
+  
+}else if($arrJson['events'][0]['message']['text'] == "ทำไร"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "เรื่องของกู";
   
 }else if($arrJson['events'][0]['message']['text'] == "ไปไหนมา"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "โตแล้วจะไปไหนก็ได้";
+  
+}else if($arrJson['events'][0]['message']['text'] == "พ่อง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "แม่ง";
+  
+}else if($arrJson['events'][0]['message']['text'] == "ก๊าบ"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "กูพูดไทยได้";
   
 }else{
   $arrPostData = array();
