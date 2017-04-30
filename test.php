@@ -9,7 +9,7 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";*/
 try 
 {
     $connection = new Mongo('mongodb://duckline:gogogo@ds127341.mlab.com:27341/heroku_fbrp3r89');
-    $database   = $connection->selectDB('duckduck');
+    $database   = $connection->selectDB('heroku_fbrp3r89');
     $collection = $database->selectCollection('linebot');
     $task               = array();
          $task['question']      = 'สวัสดี';
