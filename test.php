@@ -6,11 +6,20 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";*/
-$objConnect = mysql_connect("103.27.200.68","arkatrich_users","1w2q3r4e") or die("Error Connect to Database");
-$objDB = mysql_select_db("arkatrich_db");
-echo $strSQL = "SELECT * FROM duck_line WHERE question LIKE '%".$arrJson['events'][0]['message']['text']."%'";
-$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
-while($objResult = mysql_fetch_array($objQuery)){
-  echo $objResult["answer"];
+try 
+{
+    $connection = new Mongo('mongodb://duck_line:gogogo@ds127341.mlab.com:27341/duckduck');
+    $database   = $connection->selectDB('duckduck');
+    $collection = $database->selectCollection('linebot');
+         $task               = array();
+         $task['question']      = 'สวัสดี';
+         $task['answer']     = 'ดีก๊าบบ';
+         $task['saved_at'] = new MongoDate();
+
+         $collection->insert($task);
+} 
+catch(MongoConnectionException $e) 
+{
+    die("Failed to connect to database ".$e->getMessage());
 }
 ?>
