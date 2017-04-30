@@ -12,23 +12,25 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
 
-if($_msg == "สวัสดี" || $_msg == "หวัดดี" || $_msg == "ดี" || $_msg == "เด" || $_msg == "ฮัลโหล" || $_msg == "โหล" || $_msg == "โหลโหล"){
+$arr_hello = array("สวัสดี","ดีจ้า","ดี","Hello","Hi","ฮัลโหล","โหล","เฮ้","โย่ว","ว่าไง","เด","หวัดดี","หวัดเด");
+$arr_name = array("ชื่อราย","นายเป็นใคร","มึงชื่อไร","ใครอ่ะ","ใคร","ชื่ออะไร","Your Name","ชื่อ","แกเป็นใคร","ใครวะ","มึงเป็นใคร");
+$arr_rude = array("ควย","พ่อมึงตาย","แม่มึง","พ่อมึง","ไอ้ห่า","เหี้ย","เหี้ยจริงๆ","ฟวย","กวนตีน","กวน");
+
+if(in_array($_msg, $arr_hello)) {
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "สวัสดีก๊าบบ";
-  
-}else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
+}else if(in_array($_msg, $arr_hello)){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "อ่านไม่ออกเหรอว่าชื่อ เป็ดเหลือง";
-
-}else if($arrJson['events'][0]['message']['text'] == "กวน"){
+  $arrPostData['messages'][0]['text'] = "อ่านไม่ออกเหรอว่าชื่อ เป็ดเหลือง เป็นเซเลปด้วย";
+}else if(in_array($_msg, $arr_rude)){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "กวนไรเอาดีๆ";
+  $arrPostData['messages'][0]['text'] = "เอ๊า กูอยู่ของกูดีๆ";
   
 }else if($arrJson['events'][0]['message']['text'] == "อย่าเงียบสิ"){
   $arrPostData = array();
