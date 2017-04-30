@@ -11,7 +11,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-$objConnect = mysql_connect("www.arkatrich.com","arkatrich_users","1w2q3r4e") or die("Error Connect to Database");
+$objConnect = mysql_connect("103.27.200.68","arkatrich_users","1w2q3r4e") or die("Error Connect to Database");
 $objDB = mysql_select_db("arkatrich_db");
 echo $strSQL = "SELECT question,answer FROM duck_line WHERE question LIKE '%". $arrJson['events'][0]['message']['text'] ."%'";
 $objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
