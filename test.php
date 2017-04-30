@@ -1,32 +1,17 @@
 <?php
-/*$strAccessToken = "vwmlcHAGyusR94MaTR314mDFciyvlMm7/SpDC0Q8c3SZCfTLN49edOPEKnRcuaCjABSZHroP19SlR9eLZWkytxiFhi7TKWM1K3toKnjqlpmHGJols2lbCbQPGdjEpzCuhS96+AjDJ2+h5Tw5z7hm+AdB04t89/1O/w1cDnyilFU=";
-$content = file_get_contents('php://input');
-$arrJson = json_decode($content, true);
-$strUrl = "https://api.line.me/v2/bot/message/reply";
-$arrHeader = array();
-$arrHeader[] = "Content-Type: application/json";
-$arrHeader[] = "Authorization: Bearer {$strAccessToken}";*/
-try 
-{
-    $connection = new Mongo('mongodb://duckline:gogogo@ds127341.mlab.com:27341/heroku_fbrp3r89');
-    $database   = $connection->selectDB('heroku_fbrp3r89');
-    $collection = $database->selectCollection('linebot');
-    $task               = array();
-         $task['question']      = 'สวัสดี';
-         $task['answer']     = 'ดีก๊าบบ';
+$host = "ec2-107-22-173-230.compute-1.amazonaws.com";
+$dbname = "dn9b58cmobith";
+$user = "ibsdwuiafhlutf";
+$password = "hYAx_eEg7cFqclK0RXacAzV2FG";
+$port = "5432";
 
-         $collection->insert($task);
-} 
-catch(MongoConnectionException $e) 
-{
-    die("Failed to connect to database ".$e->getMessage());
+$dsn = "pgsql:host=$host;dbname=$dbname;user=$user;port=$port;password=$password";
+
+$db = new PDO($dsn);
+
+if($db){
+  echo "Connected <br />".$db;
+}else {
+  echo "Not connected";
 }
-/*
-         
-         
-$cursor = $collection->find();
-while ($cursor->hasNext()):
-    $task = $cursor->getNext();
-echo $task['question'];
-*/
 ?>
