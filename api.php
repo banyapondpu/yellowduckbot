@@ -10,8 +10,9 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+$_msg = $arrJson['events'][0]['message']['text'];
 
-if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
+if($_msg == "สวัสดี" || $_msg == "หวัดดี" || $_msg == "ดี" || $_msg == "เด" || $_msg == "ฮัลโหล" || $_msg == "โหล" || $_msg == "โหลโหล"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
