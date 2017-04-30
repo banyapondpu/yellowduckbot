@@ -8,23 +8,25 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";*/
 try 
 {
-    $connection = new Mongo('mongodb://duck_line:gogogo@ds127341.mlab.com:27341/duckduck');
+    $connection = new Mongo('mongodb://duckline:gogogo@ds127341.mlab.com:27341/heroku_fbrp3r89');
     $database   = $connection->selectDB('duckduck');
     $collection = $database->selectCollection('linebot');
+    $task               = array();
+         $task['question']      = 'สวัสดี';
+         $task['answer']     = 'ดีก๊าบบ';
+
+         $collection->insert($task);
 } 
 catch(MongoConnectionException $e) 
 {
     die("Failed to connect to database ".$e->getMessage());
 }
 /*
-         $task               = array();
-         $task['question']      = 'สวัสดี';
-         $task['answer']     = 'ดีก๊าบบ';
-
-         $collection->insert($task);
-         */
+         
+         
 $cursor = $collection->find();
 while ($cursor->hasNext()):
     $task = $cursor->getNext();
 echo $task['question'];
+*/
 ?>
