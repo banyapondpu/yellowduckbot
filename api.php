@@ -12,7 +12,7 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
 
-if (strpos($_GET['msg'], 'สอนเป็ด') !== false) {
+if (strpos($_msg, 'สอนเป็ด') !== false) {
   $json = file_get_contents("http://www.arkatrich.com/new/teach.php?msg=".$_msg."");
   $data = json_decode($json);
 
