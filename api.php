@@ -11,15 +11,26 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-$json = file_get_contents("http://www.arkatrich.com/new/duck.php?msg=".$_msg."");
-$data = json_decode($json);
 
-
+if (strpos($_GET['msg'], 'สอนเป็ด') !== false) {
+  $json = file_get_contents("http://www.arkatrich.com/new/teach.php?msg=".$_msg."");
+  $data = json_decode($json);
 
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = $data->message[0]->answer;
+}else{
+  $json = file_get_contents("http://www.arkatrich.com/new/duck.php?msg=".$_msg."");
+  $data = json_decode($json);
+
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = $data->message[0]->answer;
+}
+
+
 
 
 
