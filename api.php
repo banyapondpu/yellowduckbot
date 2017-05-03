@@ -11,7 +11,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-$json = file_get_contents("http://www.arkatrich.com/new/duck.php?msg=".$_GET['msg']);
+$json = file_get_contents("http://www.arkatrich.com/new/duck.php?msg=".$_msg."");
 $data = json_decode($json);
 
 
