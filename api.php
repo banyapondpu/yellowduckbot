@@ -11,13 +11,15 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-$jsonURL = "http://www.daydev.com/api/duck.php?msg=".$_msg;
-$obj = json_decode($jsonURL);
+$json = file_get_contents("http://www.arkatrich.com/new/duck.php?msg=".$_GET['msg']);
+$data = json_decode($json);
+
+
 
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = $obj->{'answer'};;
+  $arrPostData['messages'][0]['text'] = $data->message[0]->answer;
 
 
 
