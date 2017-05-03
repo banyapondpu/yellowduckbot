@@ -11,7 +11,7 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $_msg = $arrJson['events'][0]['message']['text'];
-$jsonURL = "http://www.daydev.com/api.php?msg=".$_msg;
+$jsonURL = "http://www.daydev.com/api/duck.php?msg=".$_msg;
 $obj = json_decode($jsonURL);
 
   $arrPostData = array();
