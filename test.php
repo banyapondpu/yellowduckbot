@@ -1,25 +1,28 @@
 <?php
-$host = "ec2-107-22-173-230.compute-1.amazonaws.com";
-$dbname = "dn9b58cmobith";
-$user = "ibsdwuiafhlutf";
-$password = "hYAx_eEg7cFqclK0RXacAzV2FG";
-$port = "5432";
 
-# This function reads your DATABASE_URL configuration automatically set by Heroku
-# the return value is a string that will work with pg_connect
-function pg_connection_string() {
-  return "dbname=".$dbname." host=".$host." port=5432 user=".$user." password=".$password." sslmode=require";
-}
- 
-# Establish db connection
-$db = pg_connect(pg_connection_string());
-if (!$db) {
-    echo "Database connection error."
-    exit;
-}else{
-   echo "Connected";
-}
- 
-$result = pg_query($db, "CREATE TABLE duck ( id SERIAL, question VARCHAR(255), answer VARCHAR(255));");
-$result = pg_query($db, "INSERT INTO duck (question, answer) VALUES ('หวัดดี', 'ดีก๊าบบ');");
+$strAccessToken = "vwmlcHAGyusR94MaTR314mDFciyvlMm7/SpDC0Q8c3SZCfTLN49edOPEKnRcuaCjABSZHroP19SlR9eLZWkytxiFhi7TKWM1K3toKnjqlpmHGJols2lbCbQPGdjEpzCuhS96+AjDJ2+h5Tw5z7hm+AdB04t89/1O/w1cDnyilFU=";
+
+$strUrl = "https://api.line.me/v2/bot/message/push";
+
+$arrHeader = array();
+$arrHeader[] = "Content-Type: application/json";
+$arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+
+$arrPostData = array();
+$arrPostData['to'] = "USER_ID";
+$arrPostData['messages'][0]['type'] = "text";
+$arrPostData['messages'][0]['text'] = "เหงาอ่ะตัว คุยกับเค้าหน่อย ได้ม๊าาาาาา...... อร๊างงงงห์";
+
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$strUrl);
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$result = curl_exec($ch);
+curl_close ($ch);
+
 ?>
