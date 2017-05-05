@@ -78,6 +78,16 @@ if (strpos($_msg, 'ขอเสียง') !== false) {
     $arrPostData['messages'][0]['duration'] = '5000';
 }
 
+if (strpos($_msg, 'อยู่ไหน') !== false) {
+    $arrPostData = array();
+    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][0]['type'] = "location";
+    $arrPostData['messages'][0]['title'] = "มหาวิทยาลัยธุรกิจบัณฑิตย์";
+    $arrPostData['messages'][0]['address'] = '110/1-4 ถนนประชาชื่น หลักสี่ กทม 10210';
+    $arrPostData['messages'][0]['latitude'] = '13.8703032';
+    $arrPostData['messages'][0]['longitude'] = '100.548575';
+}
+
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$strUrl);
 curl_setopt($ch, CURLOPT_HEADER, false);
