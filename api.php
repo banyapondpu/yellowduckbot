@@ -70,6 +70,14 @@ if (strpos($_msg, 'หาที่เรียน') !== false) {
     $arrPostData['messages'][0]['previewImageUrl'] = 'https://firebasestorage.googleapis.com/v0/b/fir-login-cd219.appspot.com/o/FacebookAds3.png?alt=media&token=d5946950-e0ad-4ac3-be79-eaac8ce54df6';
 }
 
+if (strpos($_msg, 'ขอเสียง') !== false) {
+    $arrPostData = array();
+    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+    $arrPostData['messages'][0]['type'] = "audio";
+    $arrPostData['messages'][0]['originalContentUrl'] = 'https://firebasestorage.googleapis.com/v0/b/fir-login-cd219.appspot.com/o/Duck-quack-sound.mp3?alt=media&token=6ee2c808-7caf-4519-92ac-a0ac18d1f384';
+    $arrPostData['messages'][0]['duration'] = '5000';
+}
+
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$strUrl);
 curl_setopt($ch, CURLOPT_HEADER, false);
