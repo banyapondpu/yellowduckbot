@@ -22,17 +22,12 @@ $json = file_get_contents('https://cdn.lottery.co.th/lottery-json/json.php?myid=
 $data = json_decode($json);
 $isData=sizeof($data);
 
-  if($isData >0){
+  if($isData <0){
    foreach($data as $rec){
     $arrPostData = array();
     $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
     $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = $rec->title;
-     
-    $arrPostData = array();
-    $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-    $arrPostData['messages'][0]['type'] = "text";
-    $arrPostData['messages'][0]['text'] = "รางวัลที่ 1 : ".$rec->prize1;
+    $arrPostData['messages'][0]['text'] = "รางวัลที่ 1: ".$rec->prize1;
    }
   }
 
