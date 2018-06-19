@@ -3,6 +3,7 @@
     <title>Analyze Image Sample</title>
 </head>
 <body>
+    test
 <?php
 // Replace <Subscription Key> with a valid subscription key.
 $ocpApimSubscriptionKey = '68ad895b9c5d409cb846fdcc0061f02e';
