@@ -1,57 +1,84 @@
-<html>
-<head>
-    <title>Analyze Image Sample</title>
-</head>
-<body>
 <?php
-// Replace <Subscription Key> with a valid subscription key.
-$ocpApimSubscriptionKey = 'e5cb5bd78c4a489b8bb96685e6d27f37';
-
-// You must use the same location in your REST call as you used to obtain
-// your subscription keys. For example, if you obtained your subscription keys
-// from westus, replace "westcentralus" in the URL below with "westus".
-$uriBase = 'https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/';
-
-$imageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
-
-require_once 'HTTP/Request2.php';
-
-$request = new Http_Request2($uriBase . '/analyze');
-$url = $request->getUrl();
-
-$headers = array(
-    // Request headers
-    'Content-Type' => 'application/json',
-    'Ocp-Apim-Subscription-Key' => $ocpApimSubscriptionKey
-);
-$request->setHeader($headers);
-
-$parameters = array(
-    // Request parameters
-    'visualFeatures' => 'Categories,Description',
-    'details' => '',
-    'language' => 'en'
-);
-$url->setQueryVariables($parameters);
-
-$request->setMethod(HTTP_Request2::METHOD_POST);
-
-// Request body parameters
-$body = json_encode(array('url' => $imageUrl));
-
-// Request body
-$request->setBody($body);
-
-try
-{
-    $response = $request->send();
-    echo "<pre>" .
-        json_encode(json_decode($response->getBody()), JSON_PRETTY_PRINT) . "</pre>";
+$access_token = "EAAI3Y9A0cSIBAL5R5dwtDdDELvjuZBoo8T1ZA1GVfBUI4hFZAPJin5EqZC9IZCimbnezQxVC2poAGkMZCwAcpdirozZBK4jMraZC9zZA4wFrK16i3VKktbVaLUzodLywk5bYtRFOdeKPor6xHqN4P5mwatS0laPY7WIBTcJEoLZCbNLgZDZD";
+$verify_token = "yellow_duck";
+$hub_verify_token = null;
+if(isset($_REQUEST['hub_challenge'])) {
+ $challenge = $_REQUEST['hub_challenge'];
+ $hub_verify_token = $_REQUEST['hub_verify_token'];
 }
-catch (HttpException $ex)
-{
-    echo "<pre>" . $ex . "</pre>";
+if ($hub_verify_token === $verify_token) {
+ echo $challenge;
+}
+$input = json_decode(file_get_contents('php://input'), true);
+$sender = $input['entry'][0]['messaging'][0]['sender']['id'];
+$message = $input['entry'][0]['messaging'][0]['message']['text'];
+$message_to_reply = '';
+/**
+ * Some Basic rules to validate incoming messages
+ */
+
+$api_key="<mLAP API KEY>";
+$url = 'https://api.mlab.com/api/1/databases/duckduck/collections/linebot?apiKey='.$api_key.'';
+$json = file_get_contents('https://api.mlab.com/api/1/databases/duckduck/collections/linebot?apiKey='.$api_key.'&q={"question":"'.$message.'"}');
+$data = json_decode($json);
+$isData=sizeof($data);
+if (strpos($message, 'สอนเป็ด') !== false) {
+  if (strpos($message, 'สอนเป็ด') !== false) {
+    $x_tra = str_replace("สอนเป็ด","", $message);
+    $pieces = explode("|", $x_tra);
+    $_question=str_replace("[","",$pieces[0]);
+    $_answer=str_replace("]","",$pieces[1]);
+    //Post New Data
+    $newData = json_encode(
+      array(
+        'question' => $_question,
+        'answer'=> $_answer
+      )
+    );
+    $opts = array(
+      'http' => array(
+          'method' => "POST",
+          'header' => "Content-type: application/json",
+          'content' => $newData
+       )
+    );
+    $context = stream_context_create($opts);
+    $returnValue = file_get_contents($url,false,$context);
+    $message_to_reply = 'ขอบคุณที่สอนเป็ด';
+  }
+}else{
+  if($isData >0){
+   foreach($data as $rec){
+     $message_to_reply = $rec->answer;
+   }
+  }else{
+    $message_to_reply = 'ก๊าบบ คุณสามารถสอนให้ฉลาดได้เพียงพิมพ์: สอนเป็ด[คำถาม|คำตอบ]';
+  }
+}
+//API Url
+$url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
+//Initiate cURL.
+$ch = curl_init($url);
+//The JSON data.
+$jsonData = '{
+    "recipient":{
+        "id":"'.$sender.'"
+    },
+    "message":{
+        "text":"'.$message_to_reply.'"
+    }
+}';
+//Encode the array into JSON.
+$jsonDataEncoded = $jsonData;
+//Tell cURL that we want to send a POST request.
+curl_setopt($ch, CURLOPT_POST, 1);
+//Attach our encoded JSON string to the POST fields.
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+//Set the content type to application/json
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+//curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+//Execute the request
+if(!empty($input['entry'][0]['messaging'][0]['message'])){
+    $result = curl_exec($ch);
 }
 ?>
-</body>
-</html>
